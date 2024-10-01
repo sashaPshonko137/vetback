@@ -33,6 +33,7 @@ func (s *animalService) Create(model model.AnimalInfo) error {
 
 	err := s.storage.CreateAnimal(model)
 	if err != nil {
+		s.logger.Error(err)
 		return customError.InternalServerError
 	}
 

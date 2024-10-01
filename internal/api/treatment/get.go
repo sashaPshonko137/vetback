@@ -16,7 +16,7 @@ import (
 // @Router /treatment/{id} [get]
 func (a *treatmentApi) NewGet() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		idStr := chi.URLParam(r, "treatmentId")
+		idStr := chi.URLParam(r, "id")
 
 		if idStr == "" {
 			http.Error(w, "неверный формат идентификатора", http.StatusBadRequest)

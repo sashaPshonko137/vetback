@@ -51,6 +51,9 @@ func ValidateAnimalUpdate(model model.AnimalToUpdate) error {
 	if len(model.Sex) > 50 {
 		return errors.New("длина пола не должна превышать 50 символов")
 	}
+	if model.Birthdate != "" && IsValidDate(model.Birthdate, "2006-01-02") == false {
+		return errors.New("дата рождения должна быть в формате 2006-01-02")
+	}
 
 	return nil
 }

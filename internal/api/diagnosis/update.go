@@ -82,6 +82,6 @@ func (a *diagnosisApi) NewUpdate() http.HandlerFunc {
 			return
 		}
 
-		w.WriteHeader(http.StatusOK)
+		render.JSON(w, r, model.NewResponse("успешное обновление информации о диагнозе"))
 	}
 }

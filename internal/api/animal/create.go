@@ -76,6 +76,7 @@ func (a *animalApi) NewCreate() http.HandlerFunc {
 			}
 			if errors.Is(err, customError.InternalServerError) {
 				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
 			}
 		}
 

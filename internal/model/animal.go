@@ -23,6 +23,7 @@ type AnimalInfo struct {
 
 type AnimalToUpdate struct {
 	DoctorId    int
+	OwnerId     int
 	DiagnosisId int
 	Name        string
 	Birthdate   string

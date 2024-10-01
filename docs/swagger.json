@@ -98,7 +98,6 @@
                         "description": "animal",
                         "name": "animalInfo",
                         "in": "body",
-                        "required": true,
                         "schema": {
                             "$ref": "#/definitions/model.AnimalToUpdate"
                         }
@@ -697,6 +696,7 @@
                     "type": "string"
                 },
                 "breed": {
+                    "nullable": true,
                     "type": "string"
                 },
                 "diagnosisId": {

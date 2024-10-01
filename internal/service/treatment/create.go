@@ -25,6 +25,7 @@ func (s *treatmentService) Create(info model.TreatmentInfo) error {
 
 	for err := range errCh {
 		if err != nil {
+			s.logger.Error(err)
 			cancel()
 			return err
 		}

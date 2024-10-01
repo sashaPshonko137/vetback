@@ -59,7 +59,7 @@ func (a *animalApi) NewDelete() http.HandlerFunc {
 			return
 		}
 
-		if animal.DoctorId != info.UserId {
+		if animal.OwnerId != info.UserId {
 			http.Error(w, "нельзя удалять чужое животное", http.StatusForbidden)
 			return
 		}

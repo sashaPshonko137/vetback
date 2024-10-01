@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS animals (
     owner_id int REFERENCES users (user_id),
     diagnosis_id int REFERENCES diagnosis (diagnosis_id),
     name varchar(50) NOT NULL,
-    birth_date date NOT NULL,
+    birthdate date NOT NULL,
     breed varchar(50) NOT NULL,
     sex varchar(10) NOT NULL
 );
@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS treatments (
     diagnosis_id int REFERENCES diagnosis (diagnosis_id),
     start date NOT NULL,
     finish date NOT NULL,
-    name varchar(50) NOT NULL,
     price float8 NOT NULL
 );
 
