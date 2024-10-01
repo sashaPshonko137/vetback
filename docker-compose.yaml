@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:14-alpine
+    ports:
+      - "54321:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=1242
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+  vet:
+    build: .
+    environment:
+      CONFIG_PATH: "./prod.yaml"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  migrator:
+    build:
+      context: .
+      dockerfile: migration.Dockerfile
+    environment:
+      MIGRATION_DIR: "./migrations"
+      MIGRATION_DSN: "host=db port=5432 dbname=postgres user=postgres password=1242 sslmode=disable"
+    restart: on-failure

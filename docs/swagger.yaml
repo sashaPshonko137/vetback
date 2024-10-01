@@ -1,0 +1,606 @@
+basePath: /
+definitions:
+  model.AnimalToUpdate:
+    properties:
+      birthdate:
+        type: string
+      breed:
+        type: string
+      diagnosisId:
+        type: integer
+      doctorId:
+        type: integer
+      name:
+        type: string
+      sex:
+        type: string
+    type: object
+  model.AppointmentToUpdate:
+    properties:
+      animalId:
+        type: integer
+      date:
+        type: string
+      diagnosisId:
+        type: integer
+      ownerId:
+        type: integer
+      reason:
+        type: string
+      status:
+        type: string
+    type: object
+  model.DiagnosisToUpdate:
+    properties:
+      name:
+        type: string
+    type: object
+  model.SwaggerAnimal:
+    properties:
+      birthdate:
+        type: string
+      breed:
+        type: string
+      diagnosisId:
+        type: integer
+      doctorId:
+        type: integer
+      name:
+        type: string
+      sex:
+        type: string
+    type: object
+  model.SwaggerAppointment:
+    properties:
+      animalId:
+        type: integer
+      date:
+        type: string
+      diagnosisId:
+        type: integer
+      ownerId:
+        type: integer
+      reason:
+        type: string
+      status:
+        type: string
+    type: object
+  model.SwaggerDiagnosis:
+    properties:
+      name:
+        type: string
+    type: object
+  model.SwaggerTreatment:
+    properties:
+      animalId:
+        type: integer
+      diagnosisId:
+        type: integer
+      finish:
+        type: string
+      price:
+        type: number
+    type: object
+  model.TreatmentToUpdate:
+    properties:
+      animalId:
+        type: integer
+      diagnosisId:
+        type: integer
+      finish:
+        type: string
+      price:
+        type: number
+    type: object
+  model.UserInfo:
+    properties:
+      address:
+        type: string
+      fullName:
+        type: string
+      password:
+        type: string
+      phoneNumber:
+        type: string
+      role:
+        type: string
+      specialization:
+        type: string
+    type: object
+  model.UserToLogin:
+    properties:
+      password:
+        type: string
+      phoneNumber:
+        type: string
+    type: object
+  model.UserToUpdate:
+    properties:
+      address:
+        type: string
+      fullName:
+        type: string
+      password:
+        type: string
+      phoneNumber:
+        type: string
+      specialization:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+host: localhost:3000
+info:
+  contact: {}
+  description: This is a server for owners and vets
+  title: VET API
+  version: "14.87"
+paths:
+  /animal:
+    get:
+      consumes:
+      - application/json
+      description: Get many animals
+      produces:
+      - application/json
+      responses: {}
+      summary: Get many animals
+      tags:
+      - animal
+    post:
+      consumes:
+      - application/json
+      description: create animal
+      parameters:
+      - description: animal
+        in: body
+        name: animalInfo
+        required: true
+        schema:
+          $ref: '#/definitions/model.SwaggerAnimal'
+      produces:
+      - application/json
+      responses: {}
+      summary: create animal
+      tags:
+      - animal
+  /animal/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an animal by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete animal
+      tags:
+      - animal
+    get:
+      consumes:
+      - application/json
+      description: Get an animal by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get animal
+      tags:
+      - animal
+    put:
+      consumes:
+      - application/json
+      description: update animal
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: animal
+        in: body
+        name: animalInfo
+        required: true
+        schema:
+          $ref: '#/definitions/model.AnimalToUpdate'
+      produces:
+      - application/json
+      responses: {}
+      summary: update
+      tags:
+      - animal
+  /appointment:
+    get:
+      consumes:
+      - application/json
+      description: Get many appointments
+      produces:
+      - application/json
+      responses: {}
+      summary: Get many appointments
+      tags:
+      - appointment
+    post:
+      consumes:
+      - application/json
+      description: create appointment
+      parameters:
+      - description: appointment
+        in: body
+        name: appointmentInfo
+        required: true
+        schema:
+          $ref: '#/definitions/model.SwaggerAppointment'
+      produces:
+      - application/json
+      responses: {}
+      summary: create appointment
+      tags:
+      - appointment
+  /appointment/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an appointment by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete appointment
+      tags:
+      - appointment
+    get:
+      consumes:
+      - application/json
+      description: Get an appointment by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get appointment
+      tags:
+      - appointment
+    put:
+      consumes:
+      - application/json
+      description: update appointment
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: appointment
+        in: body
+        name: appointmentInfo
+        required: true
+        schema:
+          $ref: '#/definitions/model.AppointmentToUpdate'
+      produces:
+      - application/json
+      responses: {}
+      summary: update appointment
+      tags:
+      - appointment
+  /diagnosis:
+    get:
+      consumes:
+      - application/json
+      description: Get much diagnosis
+      produces:
+      - application/json
+      responses: {}
+      summary: Get much diagnosis
+      tags:
+      - diagnosis
+    post:
+      consumes:
+      - application/json
+      description: create diagnosis
+      parameters:
+      - description: diagnosis
+        in: body
+        name: diagnosis
+        required: true
+        schema:
+          $ref: '#/definitions/model.SwaggerDiagnosis'
+      produces:
+      - application/json
+      responses: {}
+      summary: create diagnosis
+      tags:
+      - diagnosis
+  /diagnosis/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an diagnosis by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete diagnosis
+      tags:
+      - diagnosis
+    get:
+      consumes:
+      - application/json
+      description: Get an diagnosis by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get diagnosis
+      tags:
+      - diagnosis
+    put:
+      consumes:
+      - application/json
+      description: update diagnosis
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: diagnosis
+        in: body
+        name: diagnosisInfo
+        required: true
+        schema:
+          $ref: '#/definitions/model.DiagnosisToUpdate'
+      produces:
+      - application/json
+      responses: {}
+      summary: update diagnosis
+      tags:
+      - diagnosis
+  /session-info:
+    get:
+      consumes:
+      - application/json
+      description: Get your session info
+      produces:
+      - application/json
+      responses: {}
+      summary: Get session info
+      tags:
+      - auth
+  /sign-in:
+    post:
+      consumes:
+      - application/json
+      description: Sign in
+      parameters:
+      - description: user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserToLogin'
+      produces:
+      - application/json
+      responses: {}
+      summary: Sign in
+      tags:
+      - auth
+  /sign-out:
+    get:
+      consumes:
+      - application/json
+      description: Sign out
+      produces:
+      - application/json
+      responses: {}
+      summary: Sign out
+      tags:
+      - auth
+  /sign-up:
+    post:
+      consumes:
+      - application/json
+      description: registration
+      parameters:
+      - description: user info
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserInfo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.UserInfo'
+      summary: Sign up
+      tags:
+      - auth
+  /story/{id}:
+    get:
+      description: Generate and send PDF file
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/pdf
+      responses: {}
+      summary: Generate and send PDF file
+      tags:
+      - animal
+  /treatment:
+    get:
+      consumes:
+      - application/json
+      description: Get much treatment
+      produces:
+      - application/json
+      responses: {}
+      summary: Get much treatment
+      tags:
+      - treatment
+    post:
+      consumes:
+      - application/json
+      description: create treatment
+      parameters:
+      - description: treatment
+        in: body
+        name: treatmentInfo
+        required: true
+        schema:
+          $ref: '#/definitions/model.SwaggerTreatment'
+      produces:
+      - application/json
+      responses: {}
+      summary: create treatment
+      tags:
+      - treatment
+  /treatment/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an treatment by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete treatment
+      tags:
+      - treatment
+    get:
+      consumes:
+      - application/json
+      description: Get an treatment by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get treatment
+      tags:
+      - treatment
+    put:
+      consumes:
+      - application/json
+      description: update treatment
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: treatment
+        in: body
+        name: treatmentInfo
+        required: true
+        schema:
+          $ref: '#/definitions/model.TreatmentToUpdate'
+      produces:
+      - application/json
+      responses: {}
+      summary: update treatment
+      tags:
+      - treatment
+  /user:
+    delete:
+      consumes:
+      - application/json
+      description: Delete your account
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete your account
+      tags:
+      - user
+    get:
+      consumes:
+      - application/json
+      description: Get many users
+      produces:
+      - application/json
+      responses: {}
+      summary: Get many users
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: Update your account
+      parameters:
+      - description: user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserToUpdate'
+      produces:
+      - application/json
+      responses: {}
+      summary: Update your account
+      tags:
+      - user
+  /user/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get an user by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Get user by ID
+      tags:
+      - user
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
