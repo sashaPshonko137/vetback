@@ -13,9 +13,11 @@ type DiagnosisInfo struct {
 }
 
 type DiagnosisToUpdate struct {
-	Name string
+	DoctorId int
+	Name     string
 }
 
 type SwaggerDiagnosis struct {
-	Name string
+	DoctorId int
+	Name     string
 }

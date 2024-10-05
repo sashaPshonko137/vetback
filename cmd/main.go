@@ -3,6 +3,8 @@ package main
 import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/go-chi/cors"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 	httpSwagger "github.com/swaggo/http-swagger"
 	"log"
@@ -20,10 +22,11 @@ import (
 	diadnosisService "vetback/internal/service/diagnosis"
 	treatmentService "vetback/internal/service/treatment"
 	userService "vetback/internal/service/user"
+	"vetback/metrics"
 )
 
 // @title           VET API
-// @version         14.87
+// @version         14.89
 // @description     This is a server for owners and vets
 
 // @host      localhost:3000
@@ -70,10 +73,22 @@ func main() {
 	// init router
 	router := chi.NewRouter()
 
+	cors := cors.New(cors.Options{
+		AllowedOrigins:   []string{"http://localhost:5173"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Content-Type", "Authorization"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: true,
+		MaxAge:           300,
+	})
+
+	router.Use(cors.Handler)
+
 	router.Use(middleware.RequestID)
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 	router.Use(middleware.URLFormat)
+	router.Use(metrics.MetricsMiddleware)
 
 	router.Get("/swagger/*", httpSwagger.Handler(
 		httpSwagger.URL("http://localhost:3000/swagger/doc.json"), // URL для получения спецификации
@@ -114,6 +129,9 @@ func main() {
 	router.Put("/appointment/{id}", appointmentApi.NewUpdate())
 	router.Delete("/appointment/{id}", appointmentApi.NewDelete())
 
+	// init metrics
+	router.Handle("/metrics", promhttp.Handler())
+
 	// init server
 	srv := &http.Server{
 		Addr:    cfg.Port,
@@ -123,7 +141,7 @@ func main() {
 
 	go func() {
 		if err := srv.ListenAndServe(); err != nil {
-			log.Fatal("listen and serve: ", err)
+			panic(err)
 		}
 	}()
 

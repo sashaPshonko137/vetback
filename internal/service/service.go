@@ -1,6 +1,7 @@
 package service
 
 import (
+	"time"
 	"vetback/internal/model"
 )
 
@@ -50,4 +51,9 @@ type AppointmentService interface {
 	GetMany() ([]model.Appointment, error)
 	Update(id int, info model.AppointmentToUpdate) error
 	Delete(id int) error
+}
+
+type MetricsService interface {
+	Listen(address string) error
+	ObserveRequest(d time.Duration, status int)
 }

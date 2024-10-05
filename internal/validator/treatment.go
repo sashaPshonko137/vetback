@@ -10,6 +10,12 @@ func ValidateTreatment(model model.TreatmentInfo) error {
 	if model.DoctorId == 0 {
 		return errors.New("необходимо указать врача")
 	}
+	if model.Name == "" {
+		return errors.New("необходимо указать кличку")
+	}
+	if len(model.Name) > 50 {
+		return errors.New("длина клички не должна превышать 50 символов")
+	}
 	if model.AnimalId == 0 {
 		return errors.New("необходимо указать животное")
 	}

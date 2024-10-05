@@ -22,6 +22,7 @@ type AppointmentInfo struct {
 }
 
 type AppointmentToUpdate struct {
+	DoctorId    int
 	OwnerId     int
 	AnimalId    int
 	DiagnosisId int
@@ -31,6 +32,7 @@ type AppointmentToUpdate struct {
 }
 
 type SwaggerAppointment struct {
+	DoctorId    int
 	OwnerId     int
 	AnimalId    int
 	DiagnosisId int

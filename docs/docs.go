@@ -714,6 +714,9 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
+                "ownerId": {
+                    "type": "integer"
+                },
                 "sex": {
                     "type": "string"
                 }
@@ -731,6 +734,9 @@ const docTemplate = `{
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "ownerId": {
                     "type": "integer"
                 },
@@ -745,6 +751,9 @@ const docTemplate = `{
         "model.DiagnosisToUpdate": {
             "type": "object",
             "properties": {
+                "doctorId": {
+                    "type": "integer"
+                },
                 "name": {
                     "type": "string"
                 }
@@ -768,6 +777,9 @@ const docTemplate = `{
                 "name": {
                     "type": "string"
                 },
+                "ownerId": {
+                    "type": "integer"
+                },
                 "sex": {
                     "type": "string"
                 }
@@ -785,6 +797,9 @@ const docTemplate = `{
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "ownerId": {
                     "type": "integer"
                 },
@@ -799,6 +814,9 @@ const docTemplate = `{
         "model.SwaggerDiagnosis": {
             "type": "object",
             "properties": {
+                "doctorId": {
+                    "type": "integer"
+                },
                 "name": {
                     "type": "string"
                 }
@@ -813,7 +831,13 @@ const docTemplate = `{
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "finish": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 },
                 "price": {
@@ -830,7 +854,13 @@ const docTemplate = `{
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "finish": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 },
                 "price": {
@@ -905,7 +935,7 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "14.87",
+	Version:          "14.89",
 	Host:             "localhost:3000",
 	BasePath:         "/",
 	Schemes:          []string{},

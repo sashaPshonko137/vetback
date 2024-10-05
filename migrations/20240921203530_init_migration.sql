@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS animals (
 CREATE INDEX IF NOT EXISTS idx_animals_id ON animals(animal_id);
 
 CREATE TABLE IF NOT EXISTS treatments (
+    name varchar(50) NOT NULL,
     treatment_id SERIAL PRIMARY KEY,
     doctor_id int REFERENCES users (user_id),
     animal_id int REFERENCES animals (animal_id),

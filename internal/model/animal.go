@@ -32,6 +32,7 @@ type AnimalToUpdate struct {
 }
 
 type SwaggerAnimal struct {
+	OwnerId     int
 	DoctorId    int
 	DiagnosisId int
 	Name        string

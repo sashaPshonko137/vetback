@@ -4,7 +4,7 @@
         "description": "This is a server for owners and vets",
         "title": "VET API",
         "contact": {},
-        "version": "14.87"
+        "version": "14.89"
     },
     "host": "localhost:3000",
     "basePath": "/",
@@ -98,6 +98,7 @@
                         "description": "animal",
                         "name": "animalInfo",
                         "in": "body",
+                        "required": true,
                         "schema": {
                             "$ref": "#/definitions/model.AnimalToUpdate"
                         }
@@ -696,7 +697,6 @@
                     "type": "string"
                 },
                 "breed": {
-                    "nullable": true,
                     "type": "string"
                 },
                 "diagnosisId": {
@@ -707,6 +707,9 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "ownerId": {
+                    "type": "integer"
                 },
                 "sex": {
                     "type": "string"
@@ -725,6 +728,9 @@
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "ownerId": {
                     "type": "integer"
                 },
@@ -739,6 +745,9 @@
         "model.DiagnosisToUpdate": {
             "type": "object",
             "properties": {
+                "doctorId": {
+                    "type": "integer"
+                },
                 "name": {
                     "type": "string"
                 }
@@ -762,6 +771,9 @@
                 "name": {
                     "type": "string"
                 },
+                "ownerId": {
+                    "type": "integer"
+                },
                 "sex": {
                     "type": "string"
                 }
@@ -779,6 +791,9 @@
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "ownerId": {
                     "type": "integer"
                 },
@@ -793,6 +808,9 @@
         "model.SwaggerDiagnosis": {
             "type": "object",
             "properties": {
+                "doctorId": {
+                    "type": "integer"
+                },
                 "name": {
                     "type": "string"
                 }
@@ -807,7 +825,13 @@
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "finish": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 },
                 "price": {
@@ -824,7 +848,13 @@
                 "diagnosisId": {
                     "type": "integer"
                 },
+                "doctorId": {
+                    "type": "integer"
+                },
                 "finish": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 },
                 "price": {

@@ -1,6 +1,7 @@
 package model
 
 type Treatment struct {
+	Name        string
 	TreatmentId int
 	DoctorId    int
 	AnimalId    int
@@ -11,6 +12,7 @@ type Treatment struct {
 }
 
 type TreatmentInfo struct {
+	Name        string
 	DoctorId    int
 	AnimalId    int
 	DiagnosisId int
@@ -19,6 +21,8 @@ type TreatmentInfo struct {
 }
 
 type TreatmentToUpdate struct {
+	DoctorId    int
+	Name        string
 	AnimalId    int
 	DiagnosisId int
 	Finish      string
@@ -26,6 +30,8 @@ type TreatmentToUpdate struct {
 }
 
 type SwaggerTreatment struct {
+	DoctorId    int
+	Name        string
 	AnimalId    int
 	DiagnosisId int
 	Finish      string

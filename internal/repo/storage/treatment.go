@@ -10,14 +10,14 @@ import (
 )
 
 func (s *Storage) CreateTreatment(model model.TreatmentInfo) error {
-	stmt, err := s.db.Prepare(`INSERT INTO treatments (doctor_id, animal_id, diagnosis_id, start, finish, price) VALUES ($1, $2, $3, $4, $5, $6)`)
+	stmt, err := s.db.Prepare(`INSERT INTO treatments (doctor_id, name, animal_id, diagnosis_id, start, finish, price) VALUES ($1, $2, $3, $4, $5, $6, $7)`)
 
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(model.DoctorId, model.AnimalId, model.DiagnosisId, time.Now().Format("2006-01-02"), model.Finish, model.Price)
+	_, err = stmt.Exec(model.DoctorId, model.Name, model.AnimalId, model.DiagnosisId, time.Now().Format("2006-01-02"), model.Finish, model.Price)
 	if err != nil {
 		return err
 	}
@@ -26,14 +26,14 @@ func (s *Storage) CreateTreatment(model model.TreatmentInfo) error {
 }
 
 func (s *Storage) GetTreatment(id int) (*model.Treatment, error) {
-	stmt, err := s.db.Prepare(`SELECT treatment_id, doctor_id, animal_id, diagnosis_id, start, finish, price FROM treatments WHERE treatment_id = $1`)
+	stmt, err := s.db.Prepare(`SELECT treatment_id, name, doctor_id, animal_id, diagnosis_id, start, finish, price FROM treatments WHERE treatment_id = $1`)
 	if err != nil {
 		return nil, err
 	}
 	defer stmt.Close()
 
 	var res model.Treatment
-	err = stmt.QueryRow(id).Scan(&res.TreatmentId, &res.DoctorId, &res.AnimalId, &res.DiagnosisId, &res.Start, &res.Finish, &res.Price)
+	err = stmt.QueryRow(id).Scan(&res.TreatmentId, &res.Name, &res.DoctorId, &res.AnimalId, &res.DiagnosisId, &res.Start, &res.Finish, &res.Price)
 	parsedData, _ := time.Parse("2006-01-02T15:04:05Z", res.Start)
 	res.Start = parsedData.Format("2006-01-02")
 	parsedData, _ = time.Parse("2006-01-02T15:04:05Z", res.Finish)
@@ -65,7 +65,7 @@ func (s *Storage) GetManyTreatmentsByAnimal(id int) ([]model.Treatment, error) {
 	for rows.Next() {
 		var treatment model.Treatment
 
-		err = rows.Scan(&treatment.TreatmentId, &treatment.DoctorId, &treatment.AnimalId, &treatment.DiagnosisId, &treatment.Start, &treatment.Finish, &treatment.Price)
+		err = rows.Scan(&treatment.TreatmentId, &treatment.Name, &treatment.DoctorId, &treatment.AnimalId, &treatment.DiagnosisId, &treatment.Start, &treatment.Finish, &treatment.Price)
 		if err != nil {
 			return nil, err
 		}
@@ -106,7 +106,7 @@ func (s *Storage) GetManyTreatments() ([]model.Treatment, error) {
 	for rows.Next() {
 		var treatment model.Treatment
 
-		err = rows.Scan(&treatment.TreatmentId, &treatment.DoctorId, &treatment.AnimalId, &treatment.DiagnosisId, &treatment.Start, &treatment.Finish, &treatment.Price)
+		err = rows.Scan(&treatment.TreatmentId, &treatment.Name, &treatment.DoctorId, &treatment.AnimalId, &treatment.DiagnosisId, &treatment.Start, &treatment.Finish, &treatment.Price)
 		if err != nil {
 			return nil, err
 		}
@@ -142,6 +142,12 @@ func (s *Storage) UpdateTreatment(id int, model model.TreatmentToUpdate) error {
 	if model.AnimalId > 0 {
 		queryParts = append(queryParts, `animal_id = $`+fmt.Sprint(argId))
 		args = append(args, model.AnimalId)
+		argId++
+	}
+
+	if model.Name != "" {
+		queryParts = append(queryParts, `name = $`+fmt.Sprint(argId))
+		args = append(args, model.Name)
 		argId++
 	}
 
