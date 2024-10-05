@@ -88,10 +88,9 @@ func main() {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 	router.Use(middleware.URLFormat)
-	router.Use(metrics.MetricsMiddleware)
 
 	router.Get("/swagger/*", httpSwagger.Handler(
-		httpSwagger.URL("http://localhost:3000/swagger/doc.json"), // URL для получения спецификации
+		httpSwagger.URL("http://localhost:3000/swagger/doc.json"),
 	))
 
 	router.Post("/animal", animalApi.NewCreate())
