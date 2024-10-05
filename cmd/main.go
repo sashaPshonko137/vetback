@@ -128,9 +128,6 @@ func main() {
 	router.Put("/appointment/{id}", appointmentApi.NewUpdate())
 	router.Delete("/appointment/{id}", appointmentApi.NewDelete())
 
-	// init metrics
-	router.Handle("/metrics", promhttp.Handler())
-
 	// init server
 	srv := &http.Server{
 		Addr:    cfg.Port,
