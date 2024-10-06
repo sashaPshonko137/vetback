@@ -22,7 +22,6 @@ import (
 	diadnosisService "vetback/internal/service/diagnosis"
 	treatmentService "vetback/internal/service/treatment"
 	userService "vetback/internal/service/user"
-	"vetback/metrics"
 )
 
 // @title           VET API
