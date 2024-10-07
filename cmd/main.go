@@ -22,7 +22,7 @@ import (
 	diadnosisService "vetback/internal/service/diagnosis"
 	treatmentService "vetback/internal/service/treatment"
 	userService "vetback/internal/service/user"
-	"vetback/metrics"
+	//"vetback/metrics"
 )
 
 // @title           VET API
@@ -88,7 +88,7 @@ func main() {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 	router.Use(middleware.URLFormat)
-	router.Use(metrics.MetricsMiddleware)
+	// router.Use(metrics.MetricsMiddleware)
 
 	router.Get("/swagger/*", httpSwagger.Handler(
 		httpSwagger.URL("http://localhost:3000/swagger/doc.json"), // URL для получения спецификации

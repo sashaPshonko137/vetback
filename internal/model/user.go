@@ -52,6 +52,8 @@ type Claims struct {
 type SafeUser struct {
 	UserId         int
 	FullName       string
+	Address        string
+	PhoneNumber    string
 	Role           string
 	Specialization string
 }

@@ -39,6 +39,8 @@ func UserToSafe(user model.User) model.SafeUser {
 	return model.SafeUser{
 		UserId:         user.UserId,
 		FullName:       user.FullName,
+		Address:        user.Address,
+		PhoneNumber:    user.PhoneNumber,
 		Role:           user.Role,
 		Specialization: user.Specialization,
 	}

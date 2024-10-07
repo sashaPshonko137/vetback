@@ -59,7 +59,7 @@ func (s *Storage) GetUserByPhone(phoneNumber string) (*model.User, error) {
 }
 
 func (s *Storage) GetManyUsers() ([]model.SafeUser, error) {
-	rows, err := s.db.Query(`SELECT user_id, full_name, role, specialization FROM users`)
+	rows, err := s.db.Query(`SELECT user_id, full_name, phone_number, address, role, specialization FROM users`)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (s *Storage) GetManyUsers() ([]model.SafeUser, error) {
 
 	for rows.Next() {
 		var user model.SafeUser
-		err = rows.Scan(&user.UserId, &user.FullName, &user.Role, &user.Specialization)
+		err = rows.Scan(&user.UserId, &user.FullName, &user.PhoneNumber, &user.Address, &user.Role, &user.Specialization)
 		if err != nil {
 			return nil, err
 		}
