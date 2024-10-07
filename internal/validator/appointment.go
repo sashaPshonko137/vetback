@@ -12,9 +12,6 @@ func ValidateAppointment(info model.AppointmentInfo) error {
 	if info.AnimalId == 0 {
 		return errors.New("необходимо указать животное")
 	}
-	if info.DiagnosisId == 0 {
-		return errors.New("необходимо указать диагноз")
-	}
 	if info.Date == "" {
 		return errors.New("необходимо указать дату приема")
 	}

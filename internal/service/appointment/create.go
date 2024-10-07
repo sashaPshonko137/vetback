@@ -17,7 +17,7 @@ func (s *appointmentService) Create(info model.AppointmentInfo) error {
 	wg.Add(2)
 
 	go s.checkAnimal(ctx, info.AnimalId, errCh, &wg)
-	go s.checkDiagnosis(ctx, info.DiagnosisId, errCh, &wg)
+	go s.checkOwner(ctx, info.OwnerId, errCh, &wg)
 
 	// Ждем завершения всех горутин и закрываем канал ошибок
 	go func() {
@@ -58,25 +58,6 @@ func (s *appointmentService) checkAnimal(ctx context.Context, id int, errCh chan
 		}
 		if animal == nil {
 			errCh <- customError.AnimalNotFound
-		}
-	}
-}
-
-func (s *appointmentService) checkDiagnosis(ctx context.Context, id int, errCh chan error, wg *sync.WaitGroup) {
-	defer wg.Done()
-
-	select {
-	case <-ctx.Done():
-		return
-	default:
-		diagnosis, err := s.diagnosisService.Get(id)
-		if err != nil {
-			s.logger.Error(err)
-			errCh <- customError.InternalServerError
-			return
-		}
-		if diagnosis == nil {
-			errCh <- customError.DiagnosisNotFound
 		}
 	}
 }
