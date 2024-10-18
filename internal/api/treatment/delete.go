@@ -46,7 +46,7 @@ func (a *treatmentApi) NewDelete() http.HandlerFunc {
 			return
 		}
 
-		info, err := a.userApi.GetSessionInfo(w, r)
+		info, err := a.userApi.GetSessionInfo(r)
 		if err != nil {
 			if errors.Is(err, customError.InternalServerError) {
 				http.Error(w, err.Error(), http.StatusInternalServerError)

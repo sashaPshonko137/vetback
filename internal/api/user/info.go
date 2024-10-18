@@ -5,8 +5,8 @@ import (
 	"vetback/internal/model"
 )
 
-func (a *userApi) GetSessionInfo(w http.ResponseWriter, r *http.Request) (*model.Claims, error) {
-	token, err := a.getToken(w, r)
+func (a *userApi) GetSessionInfo(r *http.Request) (*model.Claims, error) {
+	token, err := a.getToken(r)
 	if err != nil {
 		return nil, err
 	}

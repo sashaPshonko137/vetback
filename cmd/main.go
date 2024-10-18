@@ -4,7 +4,6 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 	httpSwagger "github.com/swaggo/http-swagger"
 	"log"
@@ -89,7 +88,7 @@ func main() {
 	router.Use(middleware.URLFormat)
 
 	router.Get("/swagger/*", httpSwagger.Handler(
-		httpSwagger.URL("http://localhost:3000/swagger/doc.json"), // URL для получения спецификации
+		httpSwagger.URL("http://localhost:3000/swagger/doc.json"),
 	))
 
 	router.Post("/animal", animalApi.NewCreate())
@@ -126,9 +125,6 @@ func main() {
 	router.Get("/appointment", appointmentApi.NewGetMany())
 	router.Put("/appointment/{id}", appointmentApi.NewUpdate())
 	router.Delete("/appointment/{id}", appointmentApi.NewDelete())
-
-	// init metrics
-	router.Handle("/metrics", promhttp.Handler())
 
 	// init server
 	srv := &http.Server{

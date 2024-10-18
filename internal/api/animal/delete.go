@@ -19,7 +19,7 @@ import (
 // @Router /animal/{id} [delete]
 func (a *animalApi) NewDelete() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		info, err := a.userApi.GetSessionInfo(w, r)
+		info, err := a.userApi.GetSessionInfo(r)
 		if err != nil {
 			if errors.Is(err, customError.InvalidToken) {
 				http.Error(w, customError.MustBeDoctor.Error(), http.StatusUnauthorized)

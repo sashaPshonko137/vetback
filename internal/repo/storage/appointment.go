@@ -40,7 +40,7 @@ func (s *Storage) GetAppointment(id int) (*model.Appointment, error) {
 		return nil, err
 	}
 	parsedData, _ := time.Parse("2006-01-02T15:04:05Z", res.Date)
-	res.Date = parsedData.Format("2006-01-02 15:04:05")
+	res.Date = parsedData.Format("2006-01-02 15:04")
 	return &res, nil
 }
 
@@ -72,7 +72,7 @@ func (s *Storage) GetAppointmentsByAnimal(id int) ([]model.Appointment, error) {
 		if err != nil {
 			return nil, err
 		}
-		appointment.Date = parsedData.Format("2006-01-02 15:04:05")
+		appointment.Date = parsedData.Format("2006-01-02 15:04")
 
 		appointments = append(appointments, appointment) // Сохраняем значение, а не указатель
 	}
@@ -111,7 +111,7 @@ func (s *Storage) GetManyAppointments() ([]model.Appointment, error) {
 		if err != nil {
 			return nil, fmt.Errorf("failed to parse appointment date: %w", err)
 		}
-		appointment.Date = parsedData.Format("2006-01-02 15:04:05")
+		appointment.Date = parsedData.Format("2006-01-02 15:04")
 
 		res = append(res, appointment)
 	}

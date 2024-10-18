@@ -19,7 +19,7 @@ import (
 // @Router /user [put]
 func (a *userApi) NewUpdate() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		info, err := a.GetSessionInfo(w, r)
+		info, err := a.GetSessionInfo(r)
 		if err != nil {
 			if errors.Is(err, customError.InternalServerError) {
 				http.Error(w, err.Error(), http.StatusInternalServerError)

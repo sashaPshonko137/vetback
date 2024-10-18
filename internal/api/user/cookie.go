@@ -18,7 +18,7 @@ func (a *userApi) setToken(w http.ResponseWriter, token string) {
 	http.SetCookie(w, cookie)
 }
 
-func (a *userApi) getToken(w http.ResponseWriter, r *http.Request) (string, error) {
+func (a *userApi) getToken(r *http.Request) (string, error) {
 	cookie, err := r.Cookie("token")
 	if err != nil {
 		return "", customError.TokenNotFound

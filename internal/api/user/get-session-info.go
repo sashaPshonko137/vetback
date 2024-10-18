@@ -15,7 +15,7 @@ import (
 // @Router /session-info [get]
 func (a *userApi) NewGetSessionInfo() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		token, err := a.getToken(w, r)
+		token, err := a.getToken(r)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusUnauthorized)
 			return

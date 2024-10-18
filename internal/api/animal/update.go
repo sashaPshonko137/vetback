@@ -22,7 +22,7 @@ import (
 // @Router /animal/{id} [put]
 func (a *animalApi) NewUpdate() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		info, err := a.userApi.GetSessionInfo(w, r)
+		info, err := a.userApi.GetSessionInfo(r)
 		if err != nil {
 			if errors.Is(err, customError.InvalidToken) {
 				http.Error(w, customError.MustBeOwner.Error(), http.StatusForbidden)

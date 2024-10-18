@@ -19,7 +19,7 @@ func ValidateAppointment(info model.AppointmentInfo) error {
 		return errors.New("дата приема должна быть в формате 02-01-2006 15:04")
 	}
 	if !IsValidFinish(info.Date, "02-01-2006 15:04") {
-		return errors.New("дата приема не может быть раньше текущей (дата приема должна быть в формате 2006-01-02 15:04:05)")
+		return errors.New("дата приема не может быть раньше текущей (дата приема должна быть в формате 02-01-2006 15:04)")
 	}
 	if info.Status == "" {
 		return errors.New("необходимо указать статус")
@@ -43,8 +43,8 @@ func ValidateAppointmentUpdate(model model.AppointmentToUpdate) error {
 	if len(model.Reason) > 200 {
 		return errors.New("длина причины не должна превышать 50 символов")
 	}
-	if model.Date != "" && IsValidDate(model.Date, "2006-01-02") == false {
-		return errors.New("дата приема должна быть в формате 2006-01-02")
+	if model.Date != "" && IsValidDate(model.Date, "2006-01-02 15:04") == false {
+		return errors.New("дата приема должна быть в формате 2006-01-02 15:04")
 	}
 	return nil
 }

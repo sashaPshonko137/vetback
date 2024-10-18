@@ -6,6 +6,8 @@ import (
 	"vetback/internal/service"
 )
 
+//go:generate ../../bin/mockgen -source=api.go -destination=mocks/mock.go
+
 type AnimalApi interface {
 	NewCreate() http.HandlerFunc
 	NewGet() http.HandlerFunc
@@ -20,7 +22,7 @@ type UserApi interface {
 	NewSignIn() http.HandlerFunc
 	NewSignOut() http.HandlerFunc
 	NewGetSessionInfo() http.HandlerFunc
-	GetSessionInfo(w http.ResponseWriter, r *http.Request) (*model.Claims, error)
+	GetSessionInfo(*http.Request) (*model.Claims, error)
 	NewGet() http.HandlerFunc
 	NewGetMany() http.HandlerFunc
 	NewUpdate() http.HandlerFunc

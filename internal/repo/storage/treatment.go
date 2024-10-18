@@ -49,7 +49,7 @@ func (s *Storage) GetTreatment(id int) (*model.Treatment, error) {
 }
 
 func (s *Storage) GetManyTreatmentsByAnimal(id int) ([]model.Treatment, error) {
-	stmt, err := s.db.Prepare(`SELECT * FROM treatments WHERE animal_id = $1`)
+	stmt, err := s.db.Prepare(`SELECT treatment_id, name, doctor_id, animal_id, diagnosis_id, start, finish, price FROM treatments WHERE animal_id = $1`)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func (s *Storage) GetManyTreatmentsByAnimal(id int) ([]model.Treatment, error) {
 }
 
 func (s *Storage) GetManyTreatments() ([]model.Treatment, error) {
-	stmt, err := s.db.Prepare(`SELECT * FROM treatments`)
+	stmt, err := s.db.Prepare(`SELECT treatment_id, name, doctor_id, animal_id, diagnosis_id, start, finish, price FROM treatments`)
 	if err != nil {
 		return nil, err
 	}

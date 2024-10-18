@@ -5,6 +5,8 @@ import (
 	"vetback/internal/model"
 )
 
+//go:generate ../../bin/mockgen -source=service.go -destination=mocks/mock.go
+
 type AnimalService interface {
 	Create(info model.AnimalInfo) error
 	Get(id int) (*model.Animal, error)
