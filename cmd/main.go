@@ -68,7 +68,7 @@ func main() {
 	treatmentApi := treatment.NewTreatmentApi(treatmentServ, logger, userApi)
 	appointmentApi := appointment.NewAppointmentApi(appointmentServ, logger, userApi)
 
-	// init router
+	// init router!
 	router := chi.NewRouter()
 
 	cors := cors.New(cors.Options{
