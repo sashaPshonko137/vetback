@@ -61,7 +61,7 @@ func main() {
 	treatmentServ := treatmentService.NewTreatmentService(bd, logger, userServ, animalServ, diagnosisServ)
 	appointmentServ := appointmentService.NewAppointmentService(bd, logger, userServ, animalServ, diagnosisServ)
 
-	// init api!
+	// init api
 	userApi := user.NewUserApi(userServ, logger)
 	animalApi := animal.NewAnimalApi(animalServ, logger, userApi)
 	diagnosisApi := diagnosis.NewDiagnosisApi(diagnosisServ, logger, userApi)
