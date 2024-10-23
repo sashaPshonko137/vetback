@@ -35,7 +35,6 @@ type SwaggerAppointment struct {
 	DoctorId    int
 	OwnerId     int
 	AnimalId    int
-	DiagnosisId int
 	Date        string
 	Status      string
 	Reason      string
